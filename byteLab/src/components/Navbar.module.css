@@ -91,3 +91,42 @@ nav ul li:hover {
 .menu_button {
     display: none;
 }
+
+@media (max-width: 920px) {
+    .nav h1 {
+        font-size: 1.2rem;
+    }
+
+    nav {
+        position: absolute;
+        top: 55px;
+        left: 0;
+        background-color: #fff;
+        width: 100%;
+        padding-bottom: 1rem;
+        display: none;
+    }
+
+    nav.show {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        text-align: center;
+        padding: 0.8rem;
+    }
+
+    .menu_button {
+        display: block;
+    }
+}
+
+@media (max-width: 580px) {
+    .search_input_container {
+        display: none;
+    }
+}
