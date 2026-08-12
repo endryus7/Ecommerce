@@ -1,7 +1,11 @@
+import { useEffect, useState } from "react";
+
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import ProductsList from "./components/ProductsList";
-import { useEffect, useState } from "react";
+import Exclusive from "./components/Exclusive";
+import Depoimentos from "./components/Depoimentos";
+
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -30,6 +34,9 @@ function App() {
           </div>
         </div>
       </main>
+
+      <Exclusive />
+      <Depoimentos />
     </>
   );
 }
