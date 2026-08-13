@@ -1,27 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./SidebarProduct.module.css";
 import { X } from "lucide-react";
 
-const SidebarProduct = () => {
+const SidebarProduct = ({
+  id,
+  image,
+  name,
+  rate,
+  price,
+  removeProductFromCart,
+}) => {
+  const [quantity, setQuantity] = useState(1);
+  const [priceSum, setPriceSum] = useState(price);
+
+  const changeCartTotal = () => {};
+
   return (
     <div className={styles.sidebar_product}>
       <div className={styles.left_side}>
-        <button className={styles.remove_product_btn}>
+        <button
+          className={styles.remove_product_btn}
+          onClick={() => removeProductFromCart(id)}
+        >
           <X size={16} />
         </button>
 
         <div className={styles.details}>
-          <h4>Cadeira Gamer</h4>
-          <p>R$ 1000</p>
-          <input type="number" min={1} max={100} />
-          <p className={styles.price_sum}>
-            <b>Soma:</b> R$ 1000
-          </p>
+          <h4>{name}</h4>
+          <p>R$ {price}</p>
+          <input
+            type="number"
+            min={1}
+            max={100}
+            value={quantity}
+            onChange={(e) => {
+              setQuantity(e.target.value);
+              setPriceSum(e.target.value * price);
+            }}
+          />
+          {priceSum > price && (
+            <p className={styles.price_sum}>
+              <b>Soma:</b> R$ {priceSum}
+            </p>
+          )}
         </div>
       </div>
 
       <div className={styles.right_side}>
-        <img src="/images/gaming-msi-header.png" alt="Cadeira Gamer" />
+        <img src={image} alt={name} />
       </div>
     </div>
   );

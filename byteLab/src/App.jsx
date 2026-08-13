@@ -9,6 +9,8 @@ import ProductsPage from "./components/pages/ProductsPage";
 function App() {
   const [products, setProducts] = useState([]);
   const [showSidebarCart, setShowSidebarCart] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     fetch("/db.json")
@@ -16,9 +18,26 @@ function App() {
       .then((data) => setProducts(data.products));
   }, []);
 
+  const addProductToCart = (id) => {
+    const productToAdd = products.filter((product) => product.id === id)[0];
+    if (selectedProducts.includes(productToAdd)) return;
+    setSelectedProducts(selectedProducts.concat(productToAdd));
+    setCartTotal(cartTotal + productToAdd.price);
+  };
+
+  const removeProductFromCart = (id) => {
+    const newSelectedProducts = selectedProducts.filter(
+      (product) => product.id !== id,
+    );
+    setSelectedProducts(newSelectedProducts);
+  };
+
   return (
     <>
-      <Navbar setShowSidebarCart={setShowSidebarCart} />
+      <Navbar
+        setShowSidebarCart={setShowSidebarCart}
+        selectedProducts={selectedProducts}
+      />
 
       <main>
         <Routes>
@@ -29,6 +48,10 @@ function App() {
                 products={products}
                 setShowSidebarCart={setShowSidebarCart}
                 showSidebarCart={showSidebarCart}
+                addProductToCart={addProductToCart}
+                selectedProducts={selectedProducts}
+                cartTotal={cartTotal}
+                removeProductFromCart={removeProductFromCart}
               />
             }
           />

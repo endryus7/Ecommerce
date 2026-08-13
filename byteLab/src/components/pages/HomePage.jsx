@@ -4,13 +4,24 @@ import Exclusive from "../Exclusive";
 import Depoimentos from "../Depoimentos";
 import SidebarCart from "../SidebarCart";
 
-const HomePage = ({ products, showSidebarCart, setShowSidebarCart }) => {
+const HomePage = ({
+  products,
+  showSidebarCart,
+  setShowSidebarCart,
+  addProductToCart,
+  selectedProducts,
+  cartTotal,
+  removeProductFromCart,
+}) => {
   return (
     <>
       <Header />
       <SidebarCart
         setShowSidebarCart={setShowSidebarCart}
         showSidebarCart={showSidebarCart}
+        selectedProducts={selectedProducts}
+        cartTotal={cartTotal}
+        removeProductFromCart={removeProductFromCart}
       />
 
       <div className="page_inner_content">
@@ -20,7 +31,10 @@ const HomePage = ({ products, showSidebarCart, setShowSidebarCart }) => {
         </div>
 
         <div className="main_content">
-          <ProductsList products={products} />
+          <ProductsList
+            products={products}
+            addProductToCart={addProductToCart}
+          />
         </div>
       </div>
 

@@ -3,8 +3,8 @@ import { Search, ShoppingCart, Menu } from "lucide-react";
 import styles from "./Navbar.module.css";
 import { useState } from "react";
 
-const Navbar = ({ setShowSidebarCart }) => {
-  const [show, setShow] = useState(false)
+const Navbar = ({ setShowSidebarCart, selectedProducts }) => {
+  const [show, setShow] = useState(false);
 
   return (
     <div className={styles.nav}>
@@ -41,15 +41,17 @@ const Navbar = ({ setShowSidebarCart }) => {
           <div className={styles.search_input_container}>
             <Search size={20} />
 
-            <input
-              type="search"
-              placeholder="Pesquisar produtos"
-            />
+            <input type="search" placeholder="Pesquisar produtos" />
           </div>
 
-          <button className={styles.shopping_cart} onClick={() => setShowSidebarCart(true)}>
+          <button
+            className={styles.shopping_cart}
+            onClick={() => setShowSidebarCart(true)}
+          >
             <ShoppingCart size={30} />
-            <div className={styles.products_count}>0</div>
+            <div className={styles.products_count}>
+              {selectedProducts.length}
+            </div>
           </button>
 
           <button className={styles.menu_button} onClick={() => setShow(!show)}>
