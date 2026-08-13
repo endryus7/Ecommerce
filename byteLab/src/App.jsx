@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import ProductsList from "./components/ProductsList";
 import Exclusive from "./components/Exclusive";
 import Depoimentos from "./components/Depoimentos";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 
       <Exclusive />
       <Depoimentos />
+      <Footer />
     </>
   );
 }

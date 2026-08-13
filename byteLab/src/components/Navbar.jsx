@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className={styles.nav}>
       <div className={styles.inner_content}>
         <h1 className={styles.logo}>
-          Byte<span>Lab</span>
+          BYTE<span>LAB</span>
         </h1>
 
         <nav className={`${show && styles.show}`}>
