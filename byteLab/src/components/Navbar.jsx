@@ -3,7 +3,7 @@ import { Search, ShoppingCart, Menu } from "lucide-react";
 import styles from "./Navbar.module.css";
 import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ setShowSidebarCart }) => {
   const [show, setShow] = useState(false)
 
   return (
@@ -20,7 +20,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link to="/produtos">Produtos</Link>
+              <Link to="/products">Produtos</Link>
             </li>
 
             <li>
@@ -47,7 +47,7 @@ const Navbar = () => {
             />
           </div>
 
-          <button className={styles.shopping_cart}>
+          <button className={styles.shopping_cart} onClick={() => setShowSidebarCart(true)}>
             <ShoppingCart size={30} />
             <div className={styles.products_count}>0</div>
           </button>
