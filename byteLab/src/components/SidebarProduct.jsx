@@ -9,6 +9,7 @@ const SidebarProduct = ({
   rate,
   price,
   removeProductFromCart,
+  addToCardTotal,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [priceSum, setPriceSum] = useState(price);
@@ -20,7 +21,10 @@ const SidebarProduct = ({
       <div className={styles.left_side}>
         <button
           className={styles.remove_product_btn}
-          onClick={() => removeProductFromCart(id)}
+          onClick={() => {
+            removeProductFromCart(id);
+            addToCardTotal(-priceSum);
+          }}
         >
           <X size={16} />
         </button>
@@ -35,6 +39,7 @@ const SidebarProduct = ({
             value={quantity}
             onChange={(e) => {
               setQuantity(e.target.value);
+              addToCardTotal(e.target.value * price - priceSum);
               setPriceSum(e.target.value * price);
             }}
           />

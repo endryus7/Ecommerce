@@ -11,6 +11,7 @@ const SidebarCart = ({
   selectedProducts,
   cartTotal,
   removeProductFromCart,
+  addToCardTotal,
 }) => {
   return (
     <aside
@@ -30,20 +31,25 @@ const SidebarCart = ({
             key={product.id}
             {...product}
             removeProductFromCart={removeProductFromCart}
+            addToCardTotal={addToCardTotal}
           />
         ))}
       </div>
 
-      <div className={styles.total_container}>
-        <b>Total: </b> R$ {cartTotal}
-      </div>
+      {cartTotal === 0 ? (
+        <i>Seu carrinho está vazio</i>
+      ) : (
+        <>
+          <div className={styles.total_container}>
+            <b>Total: </b> R$ {cartTotal}
+          </div>
 
-      <Link to="/cart/checkout" className={styles.btn_icon}>
-        <span>Pagar Agora</span>
-        <Banknote />
-      </Link>
-
-      <i>Seu carrinho está vazio</i>
+          <Link to="/cart/checkout" className={styles.btn_icon}>
+            <span>Pagar Agora</span>
+            <Banknote />
+          </Link>
+        </>
+      )}
     </aside>
   );
 };

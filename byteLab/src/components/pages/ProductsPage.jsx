@@ -1,7 +1,7 @@
 import React from "react";
 import ProductsList from "../ProductsList";
 
-const ProductsPage = ({ products }) => {
+const ProductsPage = ({ products, addProductToCart }) => {
   return (
     <div className="page_inner_content">
       <div className="section_title">
@@ -10,7 +10,7 @@ const ProductsPage = ({ products }) => {
       </div>
 
       <div className="main_content">
-        <ProductsList products={products} />
+        <ProductsList products={products} addProductToCart={addProductToCart} />
       </div>
     </div>
   );

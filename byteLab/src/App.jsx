@@ -5,12 +5,15 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./components/pages/HomePage";
 import ProductsPage from "./components/pages/ProductsPage";
+import SidebarCart from "./components/SidebarCart";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [showSidebarCart, setShowSidebarCart] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+
+  const addToCardTotal = (value) => setCartTotal(cartTotal + value);
 
   useEffect(() => {
     fetch("/db.json")
@@ -39,6 +42,15 @@ function App() {
         selectedProducts={selectedProducts}
       />
 
+      <SidebarCart
+        setShowSidebarCart={setShowSidebarCart}
+        showSidebarCart={showSidebarCart}
+        selectedProducts={selectedProducts}
+        cartTotal={cartTotal}
+        removeProductFromCart={removeProductFromCart}
+        addToCardTotal={addToCardTotal}
+      />
+
       <main>
         <Routes>
           <Route
@@ -52,13 +64,24 @@ function App() {
                 selectedProducts={selectedProducts}
                 cartTotal={cartTotal}
                 removeProductFromCart={removeProductFromCart}
+                addToCardTotal={addToCardTotal}
               />
             }
           />
 
           <Route
             path="/products"
-            element={<ProductsPage products={products} />}
+            element={
+              <ProductsPage
+                products={products}
+                addProductToCart={addProductToCart}
+              />
+            }
+          />
+
+          <Route
+            path="/cart/checkout"
+            element={<div>Página de Chechout {cartTotal}</div>}
           />
         </Routes>
       </main>
