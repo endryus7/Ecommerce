@@ -5,7 +5,7 @@
 
 ![preview do projeto](https://github.com/user-attachments/assets/a6ea6b6f-a3c7-468c-bf3c-0b5ccb3f2f9b)
 
-🌐 **[ByteLab](https://ecommerce-rose-eta-36.vercel.app)**
+🌐 **[ByteLab](https://ecommerce-bytelab.vercel.app)**
 
 ---
 
