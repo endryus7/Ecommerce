@@ -3,7 +3,7 @@ import ProductsList from "../components/product/ProductsList";
 import Exclusive from "../components/sections/Exclusive";
 import Depoimentos from "../components/sections/Depoimentos";
 
-const HomePage = ({ products, addProductToCart }) => {
+const HomePage = ({ products }) => {
   return (
     <>
       <Header />
@@ -15,10 +15,7 @@ const HomePage = ({ products, addProductToCart }) => {
         </div>
 
         <div className="main_content">
-          <ProductsList
-            products={products}
-            addProductToCart={addProductToCart}
-          />
+          <ProductsList products={products} />
         </div>
       </div>
 

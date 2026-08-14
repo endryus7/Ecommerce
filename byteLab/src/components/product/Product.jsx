@@ -1,8 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Banknote, ShoppingCart } from "lucide-react";
+import { useCartContext } from "../../context/CartContext";
 
-const Product = ({ id, image, name, rate, price, addProductToCart }) => {
+const Product = ({ id, image, name, price }) => {
+  const { addProductToCart } = useCartContext();
+
   return (
     <div className="product">
       <img src={image} alt={name} />

@@ -1,17 +1,13 @@
-import React from "react";
 import styles from "./SidebarCart.module.css";
 import { X, Banknote } from "lucide-react";
 import SidebarProduct from "./SidebarProduct";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../../context/CartContext";
 
-const SidebarCart = ({
-  setShowSidebarCart,
-  showSidebarCart,
-  selectedProducts,
-  cartTotal,
-  removeProductFromCart,
-  addToCardTotal,
-}) => {
+const SidebarCart = () => {
+  const { showSidebarCart, setShowSidebarCart, selectedProducts, cartTotal } =
+    useCartContext();
+
   return (
     <aside
       className={`${styles.sidebar_cart} ${showSidebarCart ? styles.show : ""}`}
@@ -26,12 +22,7 @@ const SidebarCart = ({
 
       <div className={styles.sidebar_products_list}>
         {selectedProducts.map((product) => (
-          <SidebarProduct
-            key={product.id}
-            {...product}
-            removeProductFromCart={removeProductFromCart}
-            addToCardTotal={addToCardTotal}
-          />
+          <SidebarProduct key={product.id} {...product} />
         ))}
       </div>
 

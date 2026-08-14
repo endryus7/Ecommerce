@@ -1,7 +1,6 @@
-import React from "react";
 import ProductsList from "../components/product/ProductsList";
 
-const ProductsPage = ({ products, addProductToCart }) => {
+const ProductsPage = ({ products }) => {
   return (
     <div className="page_inner_content">
       <div className="section_title">
@@ -10,7 +9,7 @@ const ProductsPage = ({ products, addProductToCart }) => {
       </div>
 
       <div className="main_content">
-        <ProductsList products={products} addProductToCart={addProductToCart} />
+        <ProductsList products={products} />
       </div>
     </div>
   );

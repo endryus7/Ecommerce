@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./SidebarProduct.module.css";
 import { X } from "lucide-react";
+import { useCartContext } from "../../context/CartContext";
 
-const SidebarProduct = ({
-  id,
-  image,
-  name,
-  rate,
-  price,
-  removeProductFromCart,
-  addToCardTotal,
-}) => {
+const SidebarProduct = ({ id, image, name, price }) => {
+  const { removeProductFromCart, addToCardTotal } = useCartContext();
   const [quantity, setQuantity] = useState(1);
   const [priceSum, setPriceSum] = useState(price);
 

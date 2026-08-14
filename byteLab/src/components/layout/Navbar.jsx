@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { Search, ShoppingCart, Menu } from "lucide-react";
 import styles from "./Navbar.module.css";
 import { useState } from "react";
+import { useCartContext } from "../../context/CartContext";
 
-const Navbar = ({ setShowSidebarCart, selectedProducts }) => {
+const Navbar = () => {
   const [show, setShow] = useState(false);
+  const { setShowSidebarCart, selectedProducts } = useCartContext();
 
   return (
     <div className={styles.nav}>

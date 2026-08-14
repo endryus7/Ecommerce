@@ -6,88 +6,53 @@ import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import SidebarCart from "./components/cart/SidebarCart";
+import CheckoutPage from "./pages/CheckoutPage";
 
-import { useCart } from "./hooks/useCart";
+import { CartProvider } from "./context/CartContext";
 import { getProducts } from "./services/productService";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     getProducts()
       .then(setProducts)
-      .catch(console.error)
+      .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
 
-  const {
-    showSidebarCart,
-    setShowSidebarCart,
-    selectedProducts,
-    cartTotal,
-    addToCardTotal,
-    addProductToCart,
-    removeProductFromCart,
-  } = useCart(products);
+  if (loading) {
+    return <div className="loading_state">Carregando produtos...</div>;
+  }
 
-  useEffect(() => {
-    getProducts().then(setProducts);
-  }, []);
+  if (error) {
+    return (
+      <div className="error_state">
+        Não foi possível carregar os produtos. Tente novamente mais tarde.
+      </div>
+    );
+  }
 
   return (
-    <>
-      <Navbar
-        setShowSidebarCart={setShowSidebarCart}
-        selectedProducts={selectedProducts}
-      />
-
-      <SidebarCart
-        setShowSidebarCart={setShowSidebarCart}
-        showSidebarCart={showSidebarCart}
-        selectedProducts={selectedProducts}
-        cartTotal={cartTotal}
-        removeProductFromCart={removeProductFromCart}
-        addToCardTotal={addToCardTotal}
-      />
+    <CartProvider products={products}>
+      <Navbar />
+      <SidebarCart />
 
       <main>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage
-                products={products}
-                setShowSidebarCart={setShowSidebarCart}
-                showSidebarCart={showSidebarCart}
-                addProductToCart={addProductToCart}
-                selectedProducts={selectedProducts}
-                cartTotal={cartTotal}
-                removeProductFromCart={removeProductFromCart}
-                addToCardTotal={addToCardTotal}
-              />
-            }
-          />
-
+          <Route path="/" element={<HomePage products={products} />} />
           <Route
             path="/products"
-            element={
-              <ProductsPage
-                products={products}
-                addProductToCart={addProductToCart}
-              />
-            }
+            element={<ProductsPage products={products} />}
           />
-
-          <Route
-            path="/cart/checkout"
-            element={<div>Página de Chechout {cartTotal}</div>}
-          />
+          <Route path="/cart/checkout" element={<CheckoutPage />} />
         </Routes>
       </main>
 
       <Footer />
-    </>
+    </CartProvider>
   );
 }
 
