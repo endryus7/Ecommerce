@@ -1,8 +1,7 @@
-import Header from "../Header";
-import ProductsList from "../ProductsList";
-import Exclusive from "../Exclusive";
-import Depoimentos from "../Depoimentos";
-import SidebarCart from "../SidebarCart";
+import Header from "../components/layout/Header";
+import ProductsList from "../components/product/ProductsList";
+import Exclusive from "../components/sections/Exclusive";
+import Depoimentos from "../components/sections/Depoimentos";
 
 const HomePage = ({ products, addProductToCart }) => {
   return (

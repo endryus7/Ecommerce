@@ -1,39 +1,31 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import HomePage from "./components/pages/HomePage";
-import ProductsPage from "./components/pages/ProductsPage";
-import SidebarCart from "./components/SidebarCart";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+import HomePage from "./pages/HomePage";
+import ProductsPage from "./pages/ProductsPage";
+import SidebarCart from "./components/cart/SidebarCart";
+
+import { useCart } from "./hooks/useCart";
+import { getProducts } from "./services/productService";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [showSidebarCart, setShowSidebarCart] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState([]);
-  const [cartTotal, setCartTotal] = useState(0);
 
-  const addToCardTotal = (value) => setCartTotal(cartTotal + value);
+  const {
+    showSidebarCart,
+    setShowSidebarCart,
+    selectedProducts,
+    cartTotal,
+    addToCardTotal,
+    addProductToCart,
+    removeProductFromCart,
+  } = useCart(products);
 
   useEffect(() => {
-    fetch("/db.json")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products));
+    getProducts().then(setProducts);
   }, []);
-
-  const addProductToCart = (id) => {
-    const productToAdd = products.filter((product) => product.id === id)[0];
-    if (selectedProducts.includes(productToAdd)) return;
-    setSelectedProducts(selectedProducts.concat(productToAdd));
-    setCartTotal(cartTotal + productToAdd.price);
-  };
-
-  const removeProductFromCart = (id) => {
-    const newSelectedProducts = selectedProducts.filter(
-      (product) => product.id !== id,
-    );
-    setSelectedProducts(newSelectedProducts);
-  };
 
   return (
     <>

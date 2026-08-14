@@ -11,8 +11,8 @@ const Footer = () => {
           <p>Vaixe nossa aplicação para Android e iOS</p>
 
           <div>
-            <img src="/images/app-store.png" alt="App Store download" />
-            <img src="/images/play-store.png" alt="Play Store download" />
+            <img src="/images/icons/app-store.png" alt="App Store download" />
+            <img src="/images/icons/play-store.png" alt="Play Store download" />
           </div>
         </div>
 

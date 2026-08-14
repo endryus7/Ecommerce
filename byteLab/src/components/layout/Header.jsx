@@ -19,7 +19,7 @@ const Header = () => {
         </div>
 
         <div className={styles.right_side}>
-          <img src="/images/header-image.png" alt="Produto" />
+          <img src="/images/banners/header-image.png" alt="Produto" />
         </div>
 
       </div>

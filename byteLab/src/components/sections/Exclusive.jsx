@@ -27,7 +27,7 @@ const Exclusive = () => {
 
           <div className={styles.right_side}>
             <img
-              src="/images/exclusive.png"
+              src="/images/banners/exclusive.png"
               alt="Smart Band 4"
             />
           </div>

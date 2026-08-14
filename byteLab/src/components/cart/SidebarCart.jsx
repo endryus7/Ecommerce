@@ -3,7 +3,6 @@ import styles from "./SidebarCart.module.css";
 import { X, Banknote } from "lucide-react";
 import SidebarProduct from "./SidebarProduct";
 import { Link } from "react-router-dom";
-import Product from "./Product";
 
 const SidebarCart = ({
   setShowSidebarCart,
