@@ -15,6 +15,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getProducts()
@@ -22,6 +23,10 @@ function App() {
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   if (loading) {
     return <div className="loading_state">Carregando produtos...</div>;
@@ -37,15 +42,18 @@ function App() {
 
   return (
     <CartProvider products={products}>
-      <Navbar />
+      <Navbar onSearch={setSearchTerm} />
       <SidebarCart />
 
       <main>
         <Routes>
-          <Route path="/" element={<HomePage products={products} />} />
+          <Route
+            path="/"
+            element={<HomePage products={filteredProducts} />}
+          />
           <Route
             path="/products"
-            element={<ProductsPage products={products} />}
+            element={<ProductsPage products={filteredProducts} />}
           />
           <Route path="/cart/checkout" element={<CheckoutPage />} />
         </Routes>

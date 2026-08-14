@@ -4,9 +4,15 @@ import styles from "./Navbar.module.css";
 import { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
   const [show, setShow] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const { setShowSidebarCart, selectedProducts } = useCartContext();
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+    onSearch(e.target.value);
+  };
 
   return (
     <div className={styles.nav}>
@@ -43,7 +49,12 @@ const Navbar = () => {
           <div className={styles.search_input_container}>
             <Search size={20} />
 
-            <input type="search" placeholder="Pesquisar produtos" />
+            <input
+              type="search"
+              placeholder="Pesquisar produtos"
+              value={searchValue}
+              onChange={handleSearchChange}
+            />
           </div>
 
           <button
