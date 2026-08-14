@@ -14,8 +14,6 @@ const SidebarProduct = ({
   const [quantity, setQuantity] = useState(1);
   const [priceSum, setPriceSum] = useState(price);
 
-  const changeCartTotal = () => {};
-
   return (
     <div className={styles.sidebar_product}>
       <div className={styles.left_side}>

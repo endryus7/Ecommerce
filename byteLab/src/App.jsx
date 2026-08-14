@@ -12,6 +12,14 @@ import { getProducts } from "./services/productService";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getProducts()
+      .then(setProducts)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, []);
 
   const {
     showSidebarCart,
