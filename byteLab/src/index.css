@@ -120,15 +120,15 @@ button {
 }
 
 @media (max-width: 800px) {
-    .section_title h3 {
-      font-size: 1.2rem;
-    }
+  .section_title h3 {
+    font-size: 1.2rem;
+  }
 
-    .product .name, 
-    .product .price, 
-    .product .rate {
-      max-height: 1rem;
-      overflow: hidden;
-      font-size: 0.8rem;
-    }
+  .product .name,
+  .product .price,
+  .product .rate {
+    max-height: 1rem;
+    overflow: hidden;
+    font-size: 0.8rem;
+  }
 }
