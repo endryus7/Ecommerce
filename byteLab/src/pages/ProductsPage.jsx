@@ -1,5 +1,6 @@
 import ProductsList from "../components/product/ProductsList";
 
+// Página "/products".
 const ProductsPage = ({ products }) => {
   return (
     <div className="page_inner_content">

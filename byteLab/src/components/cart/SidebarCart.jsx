@@ -4,12 +4,14 @@ import SidebarProduct from "./SidebarProduct";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
 
+// A sidebar (painel lateral) do carrinho.
 const SidebarCart = () => {
   const { showSidebarCart, setShowSidebarCart, selectedProducts, cartTotal } =
     useCartContext();
 
   return (
     <aside
+      // "show" é adicionada só quando showSidebarCart é true
       className={`${styles.sidebar_cart} ${showSidebarCart ? styles.show : ""}`}
     >
       <div className={styles.top}>
@@ -22,6 +24,7 @@ const SidebarCart = () => {
 
       <div className={styles.sidebar_products_list}>
         {selectedProducts.map((product) => (
+          // remove o produto e atualiza o total.
           <SidebarProduct key={product.id} {...product} />
         ))}
       </div>

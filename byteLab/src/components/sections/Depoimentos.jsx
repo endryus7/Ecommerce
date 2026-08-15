@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Depoimentos.module.css'
 
+// Seção de depoimentos.
 const Depoimentos = () => {
   return (
     <div className={styles.page_inner_content}>

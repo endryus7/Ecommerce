@@ -3,6 +3,7 @@ import styles from "./Exclusive.module.css";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
+// Seção de banner "produto em destaque".
 const Exclusive = () => {
   return (
     <div className={styles.exclusive_section}>

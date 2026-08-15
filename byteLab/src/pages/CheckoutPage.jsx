@@ -1,5 +1,6 @@
 import { useCartContext } from "../context/CartContext";
 
+// Página "/cart/checkout".
 const CheckoutPage = () => {
   const { cartTotal } = useCartContext();
 

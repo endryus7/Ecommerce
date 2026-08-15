@@ -4,14 +4,20 @@ import styles from "./Navbar.module.css";
 import { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
 
+// onSearch vem do App.jsx, é chamado a cada letra digitada.
 const Navbar = ({ onSearch }) => {
+  // Controla se o menu mobile (hambúrguer) está aberto.
   const [show, setShow] = useState(false);
+
+  // Guarda o texto digitado.
   const [searchValue, setSearchValue] = useState("");
+
+  // Pega do Context em vez de receber por prop.
   const { setShowSidebarCart, selectedProducts } = useCartContext();
 
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
-    onSearch(e.target.value);
+    onSearch(e.target.value); // avisa o App pra filtrar a lista
   };
 
   return (
@@ -57,6 +63,7 @@ const Navbar = ({ onSearch }) => {
             />
           </div>
 
+          {/* Abre a sidebar do carrinho */}
           <button
             className={styles.shopping_cart}
             onClick={() => setShowSidebarCart(true)}

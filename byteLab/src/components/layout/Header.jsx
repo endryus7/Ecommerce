@@ -3,6 +3,7 @@ import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
 import { ChevronRight } from 'lucide-react'
 
+// leva o visitante pra /products ao clicar em "Ver Agora".
 const Header = () => {
   return (
     <>

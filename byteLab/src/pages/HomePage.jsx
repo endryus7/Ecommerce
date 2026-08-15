@@ -3,6 +3,7 @@ import ProductsList from "../components/product/ProductsList";
 import Exclusive from "../components/sections/Exclusive";
 import Depoimentos from "../components/sections/Depoimentos";
 
+// Página inicial. Recebe "products" já filtrado pela busca.
 const HomePage = ({ products }) => {
   return (
     <>
