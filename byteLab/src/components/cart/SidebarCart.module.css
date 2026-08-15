@@ -1,3 +1,4 @@
+/* painel do carrinho */
 .sidebar_cart {
     background-color: #fff;
     position: fixed;
@@ -21,14 +22,17 @@
     gap: 0.5rem;
 }
 
+/* esconder scrollbar */
 .sidebar_cart::-webkit-scrollbar {
     display: none;
 }
 
+/* estado aberto */
 .sidebar_cart.show {
     display: flex;
 }
 
+/* topo (título + botão fechar) */
 .top {
     display: flex;
     justify-content: space-between;
@@ -43,10 +47,12 @@
     border-radius: 50%;
 }
 
+/* total */
 .total_container {
     margin-block: 1rem;
 }
 
+/* botão pagar */
 .btn_icon {
     display: flex;
     justify-content: center;

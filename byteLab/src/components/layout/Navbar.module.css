@@ -1,3 +1,4 @@
+/* container */
 .nav {
     background-color: #fff;
     padding: 1rem;
@@ -16,6 +17,7 @@
     margin: auto;
 }
 
+/* logo */
 .logo {
     color: var(--primary-color);
 }
@@ -24,6 +26,7 @@
     color: var(--dark-color);
 }
 
+/* menu */
 nav ul {
     display: flex;
     list-style: none;
@@ -31,6 +34,13 @@ nav ul {
     gap: 1rem;
 }
 
+nav ul li:hover {
+    transform: translateY(-4px);
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+/* ícones */
 .navs_icon_container {
     display: flex;
     align-items: center;
@@ -41,6 +51,7 @@ nav ul {
     height: 1.5rem;
 }
 
+/* carrinho + badge de quantidade */
 .navs_icon_container .shopping_cart {
     position: relative;
     
@@ -63,6 +74,7 @@ nav ul {
     justify-content: center;
 }
 
+/* input de busca */
 .search_input_container {
     display: flex;
     align-items: center;
@@ -82,16 +94,12 @@ nav ul {
     color: #808080;
 }
 
-nav ul li:hover {
-    transform: translateY(-4px);
-    transition: all 0.2s;
-    font-weight: bold;
-}
-
+/* botão menu mobile (hambúrguer) */
 .menu_button {
     display: none;
 }
 
+/* mobile: menu vira hambúrguer */
 @media (max-width: 920px) {
     .nav h1 {
         font-size: 1.2rem;
@@ -125,6 +133,7 @@ nav ul li:hover {
     }
 }
 
+/* mobile pequeno: esconde busca */
 @media (max-width: 580px) {
     .search_input_container {
         display: none;

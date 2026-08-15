@@ -1,3 +1,4 @@
+/* linha do produto */
 .sidebar_product {
     display: flex;
     width: 100%;
@@ -7,6 +8,7 @@
     gap: 0.5rem;
 }
 
+/* botão remover */
 .sidebar_product button {
     background-color: var(--dark-color);
     color: #fff;
@@ -15,15 +17,18 @@
     border-radius: 50%;
 }
 
+/* imagem */
 .sidebar_product img {
     height: 75px;
 }
 
+/* lado esquerdo (imagem + detalhes) */
 .sidebar_product .left_side {
     display: flex;
     gap: 0.5rem;
 }
 
+/* detalhes (nome, preço) */
 .sidebar_product .left_side .details {
     display: flex;
     flex-direction: column;
@@ -33,6 +38,7 @@
     font-size: 0.8rem;
 }
 
+/* input de quantidade */
 .sidebar_product .left_side input {
     width: 55px;
     margin-top: 0.25rem;

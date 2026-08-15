@@ -1,3 +1,4 @@
+/* container */
 header {
     background-color: var(--primary-color);
 }
@@ -12,6 +13,7 @@ header .inner_content {
     gap: 4rem;
 }
 
+/* texto */
 header .left_side {
     color: #fff;
 }
@@ -25,6 +27,7 @@ header .left_side p {
     padding-bottom: 2rem;
 }
 
+/* botão */
 .see_more_btn {
     background-color: var(--primary-color);
     padding: 0.8rem 1rem;
@@ -41,10 +44,12 @@ header .left_side p {
     max-width: 200px;
 }
 
+/* imagem */
 header .right_side img {
  width: 100%;
 }
 
+/* media (telas médias) */
 @media (max-width: 928px) {
     header .inner_content {
         gap: 2rem;
@@ -57,6 +62,7 @@ header .right_side img {
     }
 }
 
+/* media (mobile) */
 @media (max-width: 780px) {
     header .inner_content {
         grid-template-columns: 1fr;

@@ -1,9 +1,11 @@
+/* container */
 .depoimentos {
   display: flex;
   padding: 4rem 1rem;
   justify-content: space-evenly;
 }
 
+/* card */
 .depoimento {
   display: flex;
   flex-direction: column;
@@ -22,6 +24,7 @@
   transform: translateY(-5px);
 }
 
+/* aspas */
 .depoimento p:first-child {
   font-weight: bold;
   font-size: 5rem;
@@ -30,11 +33,13 @@
   line-height: 3rem;
 }
 
+/* estrelas */
 .depoimento .rate {
   color: var(--secondary-color);
   font-size: 1.3rem;
 }
 
+/* media (mobile) */
 @media (max-width: 800px) {
   .depoimento .rate {
     max-height: 1rem;

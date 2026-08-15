@@ -1,3 +1,4 @@
+/* container */
 .exclusive_section {
     background-color: var(--secondary-color);
 }
@@ -15,6 +16,7 @@
     padding: 2rem 1rem;
 }
 
+/* texto */
 .left_side {
     flex: 1;
     max-width: 600px;
@@ -28,6 +30,7 @@
     margin: 0 0 1rem;
 }
 
+/* botão */
 .see_more_btn {
     background-color: var(--primary-color);
     padding: 0.8rem 1rem;
@@ -44,6 +47,7 @@
     max-width: 200px;
 }
 
+/* imagem */
 .right_side {
     width: 300px;
 }
@@ -54,6 +58,7 @@
     display: block;
 }
 
+/* media (mobile) */
 @media (max-width: 800px) {
     .exclusive_section .content {
         flex-direction: column-reverse;
