@@ -1,39 +1,56 @@
 import { useState } from "react";
 
-// Recebe a lista de produtos pra achar o produto completo a partir de um id (addProductToCart só recebe o id).
+// Regras do carrinho isoladas da UI
 export function useCart(products) {
   const [showSidebarCart, setShowSidebarCart] = useState(false);
-  const [selectedProducts, setSelectedProducts] = useState([]);
-  const [cartTotal, setCartTotal] = useState(0);
 
-  // Soma (ou subtrai, se value for negativo) um valor ao total do carrinho. Usado tanto ao adicionar/remover produto quanto ao mudar a quantidade de um item já no carrinho.
-  const addToCardTotal = (value) => setCartTotal(cartTotal + value);
+  // Cada item: { ...produto, quantity }
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  // Total calculado a partir dos itens (não é estado próprio)
+  const cartTotal = selectedProducts.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0,
+  );
 
   const addProductToCart = (id) => {
-    const productToAdd = products.filter((product) => product.id === id)[0];
+    const alreadyInCart = selectedProducts.find((product) => product.id === id);
 
-    // Evita duplicar o mesmo produto no carrinho.
-    if (selectedProducts.includes(productToAdd)) return;
+    // Já está no carrinho: só aumenta a quantidade
+    if (alreadyInCart) {
+      updateQuantity(id, alreadyInCart.quantity + 1);
+      return;
+    }
 
-    setSelectedProducts(selectedProducts.concat(productToAdd));
-    setCartTotal(cartTotal + productToAdd.price);
+    // Produto novo: adiciona com quantity 1
+    const productToAdd = products.find((product) => product.id === id);
+    if (!productToAdd) return;
+
+    setSelectedProducts([...selectedProducts, { ...productToAdd, quantity: 1 }]);
   };
 
   const removeProductFromCart = (id) => {
-    const newSelectedProducts = selectedProducts.filter(
-      (product) => product.id !== id,
-    );
-    setSelectedProducts(newSelectedProducts);
+    setSelectedProducts(selectedProducts.filter((product) => product.id !== id));
   };
 
-  // Tudo que é devolvido aqui é o que fica disponível através do CartContext / useCartContext() pros componentes.
+  // Atualiza a quantidade de um item (nunca menor que 1)
+  const updateQuantity = (id, quantity) => {
+    const safeQuantity = Math.max(1, Number(quantity) || 1);
+
+    setSelectedProducts(
+      selectedProducts.map((product) =>
+        product.id === id ? { ...product, quantity: safeQuantity } : product,
+      ),
+    );
+  };
+
   return {
     showSidebarCart,
     setShowSidebarCart,
     selectedProducts,
     cartTotal,
-    addToCardTotal,
     addProductToCart,
     removeProductFromCart,
+    updateQuantity,
   };
 }

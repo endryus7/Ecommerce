@@ -1,25 +1,23 @@
-import { useState } from "react";
 import styles from "./SidebarProduct.module.css";
 import { X } from "lucide-react";
 import { useCartContext } from "../../context/CartContext";
 
-// Mostra o produto, deixa mudar quantidade e remover.
-const SidebarProduct = ({ id, image, name, price }) => {
-  const { removeProductFromCart, addToCardTotal } = useCartContext();
+// Renderiza UMA linha do carrinho. id, image, name, price e quantity
+const SidebarProduct = ({ id, image, name, price, quantity }) => {
+  // Pega do CartContext em vez de receber por prop
+  const { removeProductFromCart, updateQuantity } = useCartContext();
 
-  const [quantity, setQuantity] = useState(1);
-  const [priceSum, setPriceSum] = useState(price); // preço x quantidade
+
+  // (preço unitário x quantidade = quanto esse item pesa no total).
+  const priceSum = price * quantity;
 
   return (
     <div className={styles.sidebar_product}>
       <div className={styles.left_side}>
+        {/* Botão de remover: chama removeProductFromCart com o id desse produto específico. */}
         <button
           className={styles.remove_product_btn}
-          onClick={() => {
-            removeProductFromCart(id);
-            // Subtrai do total geral o que esse item somava
-            addToCardTotal(-priceSum);
-          }}
+          onClick={() => removeProductFromCart(id)}
         >
           <X size={16} />
         </button>
@@ -28,22 +26,17 @@ const SidebarProduct = ({ id, image, name, price }) => {
           <h4>{name}</h4>
           <p>R$ {price}</p>
 
+          {/* value vem do carrinho (quantity), e cada mudança chama updateQuantity, que recalcula tudo no useCart.js. O componente só repassa o valor digitado. */}
           <input
             type="number"
             min={1}
             max={100}
             value={quantity}
-            onChange={(e) => {
-              setQuantity(e.target.value);
-
-              // Recalcula o total geral: soma a diferença entre o novo subtotal e o antigo (não recalcula tudo do zero).
-              addToCardTotal(e.target.value * price - priceSum);
-              setPriceSum(e.target.value * price);
-            }}
+            onChange={(e) => updateQuantity(id, e.target.value)}
           />
 
-          {/* Mostra a linha "Soma" se a quantidade for maior que 1 */}
-          {priceSum > price && (
+          {/* Só mostra a linha "Soma" quando tem mais de 1 unidade */}
+          {quantity > 1 && (
             <p className={styles.price_sum}>
               <b>Soma:</b> R$ {priceSum}
             </p>
