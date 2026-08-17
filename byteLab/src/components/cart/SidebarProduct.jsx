@@ -1,6 +1,7 @@
 import styles from "./SidebarProduct.module.css";
 import { X } from "lucide-react";
 import { useCartContext } from "../../context/CartContext";
+import { formatPrice } from "../../utils/formatPrice";
 
 // Renderiza UMA linha do carrinho. id, image, name, price e quantity
 const SidebarProduct = ({ id, image, name, price, quantity }) => {
@@ -24,7 +25,7 @@ const SidebarProduct = ({ id, image, name, price, quantity }) => {
 
         <div className={styles.details}>
           <h4>{name}</h4>
-          <p>R$ {price}</p>
+          <p>R$ {formatPrice(price)}</p>
 
           {/* value vem do carrinho (quantity), e cada mudança chama updateQuantity, que recalcula tudo no useCart.js. O componente só repassa o valor digitado. */}
           <input
@@ -38,7 +39,7 @@ const SidebarProduct = ({ id, image, name, price, quantity }) => {
           {/* Só mostra a linha "Soma" quando tem mais de 1 unidade */}
           {quantity > 1 && (
             <p className={styles.price_sum}>
-              <b>Soma:</b> R$ {priceSum}
+              <b>Soma:</b> R$ {formatPrice(priceSum)}
             </p>
           )}
         </div>

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Banknote, ShoppingCart } from "lucide-react";
 import { useCartContext } from "../../context/CartContext";
+import { formatPrice } from "../../utils/formatPrice";
 
 // Card individual de um produto
 const Product = ({ id, image, name, price }) => {
@@ -21,7 +22,7 @@ const Product = ({ id, image, name, price }) => {
       <p className="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
 
       <p className="price">
-        <span>R$</span> {price}
+        <span>R$</span> {formatPrice(price)}
       </p>
 
       <div className="buttons">

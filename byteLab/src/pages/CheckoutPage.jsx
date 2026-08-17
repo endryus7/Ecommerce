@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Banknote } from "lucide-react";
 import { useCartContext } from "../context/CartContext";
+import { formatPrice } from "../utils/formatPrice";
 import styles from "./CheckoutPage.module.css";
 
 // Página "/cart/checkout"
@@ -43,12 +44,12 @@ const CheckoutPage = () => {
               <div className={styles.item_details}>
                 <p className={styles.item_name}>{product.name}</p>
                 <p className={styles.item_price}>
-                  R$ {product.price} <span>× {product.quantity}</span>
+                  R$ {formatPrice(product.price)} <span>× {product.quantity}</span>
                 </p>
               </div>
 
               <p className={styles.item_subtotal}>
-                R$ {product.price * product.quantity}
+                R$ {formatPrice(product.price * product.quantity)}
               </p>
             </div>
           ))}
@@ -60,7 +61,7 @@ const CheckoutPage = () => {
 
           <div className={styles.summary_row}>
             <span>Subtotal</span>
-            <span>R$ {cartTotal}</span>
+            <span>R$ {formatPrice(cartTotal)}</span>
           </div>
 
           <div className={styles.summary_row}>
@@ -70,7 +71,7 @@ const CheckoutPage = () => {
 
           <div className={`${styles.summary_row} ${styles.total_row}`}>
             <span>Total</span>
-            <span>R$ {cartTotal}</span>
+            <span>R$ {formatPrice(cartTotal)}</span>
           </div>
 
           {/* confirmação do pedido */}

@@ -3,6 +3,8 @@ import { X, Banknote } from "lucide-react";
 import SidebarProduct from "./SidebarProduct";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
+import { formatPrice } from "../../utils/formatPrice";
+
 
 // A sidebar (painel lateral) do carrinho.
 const SidebarCart = () => {
@@ -34,7 +36,7 @@ const SidebarCart = () => {
       ) : (
         <>
           <div className={styles.total_container}>
-            <b>Total: </b> R$ {cartTotal}
+            <b>Total: </b> R$ {formatPrice(cartTotal)}
           </div>
 
           <Link to="/cart/checkout" className={styles.btn_icon}>
